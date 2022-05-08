@@ -5,6 +5,7 @@ btnDec = document.querySelector('#dec'),
 inputChat = document.querySelector('#chat'),
 inputPswd = document.querySelector('#pass'),
 result = document.querySelector('#result'),
+consolAlert = 'input is not in accordance with the provisions',
 data = [
     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -12,8 +13,8 @@ data = [
 ];
 
 console.log(data);
-
 alert.style.transform = 'translateY(-80px)';
+
 
 // warning content
 function warning(dom){
@@ -38,17 +39,22 @@ function success(){
     console.log('input in accordance with the provisions');
 }
 
+// show content alert
+function sAlert(note,notes){
+    alert.style.transform = 'translateY(0px)';
+    notif.innerHTML = notes;
+    console.log(note);
+    setTimeout(() =>{
+        alert.style.transform = 'translateY(-80px)';
+    },2500);
+}
+
 // check for conditin validation input
 function check(dom){
     if (specialChar(dom) == false){
-        alert.style.transform = 'translateY(0px)';
-        notif.innerHTML = "don't use special character";
-        console.log('input is not in accordance with the provisions');
         warning(inputChat);
         unwarning(inputPswd);
-        setTimeout(() =>{
-            alert.style.transform = 'translateY(-80px)';
-        },2500);
+        sAlert(consolAlert,"don't use special character");
     } else if (specialChar(dom)){
         unwarning(inputChat);
         success();
@@ -62,34 +68,19 @@ btnEnc.addEventListener('click',() => {
     
     if (valueChat == '' && valuePass == ''){
         // if the user does not fill in the password and chat
-        alert.style.transform = 'translateY(0px)';
-        notif.innerHTML = 'chat and password have not been initiated';
-        console.log('input is not in accordance with the provisions');
         warning(inputChat);
         warning(inputPswd);
-        setTimeout(() =>{
-            alert.style.transform = 'translateY(-80px)';
-        },2500);
+        sAlert(consolAlert,'chat and password have not been initiated');
     } else if (valueChat == ''){
         // if the user does not fill the chat
-        alert.style.transform = 'translateY(0px)';
-        notif.innerHTML = 'chat has not been initiated';
-        console.log('input is not in accordance with the provisions');
         warning(inputChat);
         unwarning(inputPswd);
-        setTimeout(() =>{
-            alert.style.transform = 'translateY(-80px)';
-        },2500);
+        sAlert(consolAlert,'chat has not been initiated');
     } else if (valuePass == ''){
         // if the user does not fill in the password 
-        alert.style.transform = 'translateY(0px)';
-        notif.innerHTML = 'password has not been terminated';
-        console.log('input is not in accordance with the provisions');
         warning(inputPswd);
         unwarning(inputChat);
-        setTimeout(() =>{
-            alert.style.transform = 'translateY(-80px)';
-        },2500);
+        sAlert(consolAlert,'password has not been terminated');
     } else {
         // if the user has filled in the chat and password, special validation of the character will be carried out
         check(valueChat);

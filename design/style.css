@@ -29,9 +29,10 @@ aside {
     right: 5px;
     padding: 2px 4px;
     border-radius: 8px;
+    transition: 0.5s ease-in-out;
     border: 1px solid var(--main-color);
     color: var(--red-color);
-    transition: 0.5s ease-in-out;
+    background: var(--primary-color);
 } 
 
 .input,.result {
