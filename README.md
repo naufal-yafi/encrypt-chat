@@ -6,9 +6,12 @@
 <br />
 <p>Learning the basics of data security is encrypting a message</p>
 <br />
-* BUG :
-  1. The use of passwords 25 and 87 causes lowercase letters to become capital letters and converts "K" into spaces <br>
-  2. The use of passwords 88-99 resulted in capital letters not being able to encrypt <br>
-  3. The use of passwords 87-99 resulted in spaces not being encrypted <br>
-<br />
+<h4>* BUG :</h4>
+
+<p>
+  &nbsp;&nbsp;&nbsp;1. The use of passwords 25 and 87 causes lowercase letters to become capital letters and converts "K" into spaces <br>
+  &nbsp;&nbsp;&nbsp;2. The use of passwords 88-99 resulted in capital letters not being able to encrypt <br>
+  &nbsp;&nbsp;&nbsp;3. The use of passwords 87-99 resulted in spaces not being encrypted
+</p>
+
 <b>Decrypt feature not yet available !!1</b>
