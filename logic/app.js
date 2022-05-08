@@ -12,10 +12,6 @@ data = [
     '1','2','3','4','5','6','7','8','9','0'
 ];
 
-// Bug menjadi huruf kapital dan K berubah menjadi spasi && aku Tak => AKUAJA 25 87
-// Undefined huruf kapital 88-99 
-// Undefined spasi 87-99
-
 let strToChar = [],
 keyChat = [],
 mergeChat = "";
