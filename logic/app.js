@@ -9,48 +9,83 @@ consolAlert = 'input is not in accordance with the provisions',
 data = [
     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-    '','1','2','3','4','5','6','7','8','9','0'
+    ' ','1','2','3','4','5','6','7','8','9','0'
 ];
+
+let strToChar = [],
+keyChat = [];
 
 console.log(data);
 alert.style.transform = 'translateY(-80px)';
 
+// ! START LOGIC 
+// 1. split chat to array char
+const splChat = (chat) => {
+    for(let i=0; i<chat.length; i++){
+        strToChar[i] = chat.charAt(i);
+    }
+};
+
+// 2. search key number
+const keyNum = (chatSplit) => {
+    for (let i=0; i<chatSplit.length;i++){
+        for (let j=0; j<data.length; j++){
+            if (chatSplit[i] == data[j]){
+                let key = j+1;
+                keyChat[i] = parseInt(key);
+            }
+        }
+    }
+};
+
+// 3. add key number with a password
+const changeKey = (pass) => {
+    for (let i=0; i<keyChat.length; i++){
+        let cK = keyChat[i]+pass;
+        keyChat[i] = cK;
+    }
+};
+
+// 4. convert key number
+const conv = () => {
+    for (let i=0; i<keyChat.length; i++){
+        let pK = i+1,
+        indic = keyChat[pK-1];
+        strToChar[i] = data[indic];
+    }
+}
+// ! END LOGIC
 
 // warning content
-function warning(dom){
+const warning = (dom) => {
     dom.style.background = 'var(--red-color)';
     dom.style.color = 'var(--primary-color)';
-} function unwarning(dom){
+}; const unwarning = (dom) => {
     dom.style.background = 'var(--primary-color)';
     dom.style.color = 'var(--main-color)';
-}
+};
 
 // input validation special character
-function specialChar(dom){
+const specialChar = (dom) => {
     let sc = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?",cond=true;
     for (let i=0; i<dom.length; i++){
         cond = sc.indexOf(dom.charAt(i)) != -1 ? false:true;
     }
     return cond;
-}
-
-// final condition validation input
-function success(){
-    console.log('input in accordance with the provisions');
-}
+};
 
 // show content alert
-function sAlert(note,notes){
+const sAlert = (note,notes) => {
     alert.style.transform = 'translateY(0px)';
     notif.innerHTML = notes;
     console.log(note);
     setTimeout(() =>{
         alert.style.transform = 'translateY(-80px)';
     },2500);
-}
+};
 
 // check for conditin validation input
-function check(dom){
+const check = (dom) => {
     if (specialChar(dom) == false){
         warning(inputChat);
         unwarning(inputPswd);
@@ -59,12 +94,28 @@ function check(dom){
         unwarning(inputChat);
         success();
     }
-}
+};
+
+// final condition validation input
+const success = () => {
+    let valueChat = inputChat.value,
+    valuePass = parseInt(inputPswd.value);
+    console.log('input in accordance with the provisions');
+    splChat(valueChat);
+    console.log(strToChar);
+    keyNum(strToChar);
+    console.log(keyChat);
+    changeKey(valuePass);
+    console.log(keyChat);
+    conv();
+    console.log(strToChar);
+    result.innerHTML = strToChar;
+};
 
 // click event encrypt
 btnEnc.addEventListener('click',() => {
-    let valueChat = inputChat.value;
-    let valuePass = inputPswd.value;
+    let valueChat = inputChat.value,
+    valuePass = inputPswd.value;
     
     if (valueChat == '' && valuePass == ''){
         // if the user does not fill in the password and chat
@@ -83,6 +134,8 @@ btnEnc.addEventListener('click',() => {
         sAlert(consolAlert,'password has not been terminated');
     } else {
         // if the user has filled in the chat and password, special validation of the character will be carried out
+        unwarning(inputChat);
+        unwarning(inputPswd);
         check(valueChat);
     }
 });
