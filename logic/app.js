@@ -9,7 +9,7 @@ consolAlert = 'input is not in accordance with the provisions',
 data = [
     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-    '1','2','3','4','5','6','7','8','9','0',' '
+    '1','2','3','4','5','6','7','8','9','0'
 ];
 
 // Bug menjadi huruf kapital dan K berubah menjadi spasi && aku Tak => AKUAJA 25 87
@@ -38,6 +38,8 @@ const keyNum = (chatSplit) => {
             if (chatSplit[i] == data[j]){
                 let key = j+1;
                 keyChat[i] = parseInt(key);
+            } else if (chatSplit[i] == " "){
+                keyChat[i] = "#";
             }
         }
     }
@@ -46,8 +48,12 @@ const keyNum = (chatSplit) => {
 // 3. add key number with a password
 const changeKey = (pass) => {
     for (let i=0; i<keyChat.length; i++){
-        let cK = keyChat[i]+pass;
-        keyChat[i] = cK;
+        if (keyChat[i] == "#"){
+            //
+        } else {
+            let cK = keyChat[i]+pass;
+            keyChat[i] = cK;
+        }
     }
 };
 
@@ -55,11 +61,15 @@ const changeKey = (pass) => {
 const conv = () => {
     for (let i=0; i<keyChat.length; i++){
         indic = keyChat[i];
-        if (indic > (data.length-1)){
-            let cond = indic-(data.length-1);
-            indic = cond;
+        if (keyChat[i] == "#"){
+            strToChar[i] = "#";
+        } else {
+            if (indic > (data.length-1)){
+                let cond = indic-(data.length-1);
+                indic = cond;
+            }
+            strToChar[i] = data[indic];
         }
-        strToChar[i] = data[indic];
     }
 };
 
