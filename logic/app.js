@@ -13,7 +13,8 @@ data = [
 ];
 
 let strToChar = [],
-keyChat = [];
+keyChat = [],
+mergeChat = "";
 
 console.log(data);
 alert.style.transform = 'translateY(-80px)';
@@ -52,6 +53,12 @@ const conv = () => {
         let pK = i+1,
         indic = keyChat[pK-1];
         strToChar[i] = data[indic];
+    }
+}
+// 5. merge
+const merge = () => {
+    for (let i=0; i<strToChar.length; i++){
+        mergeChat += strToChar[i];
     }
 }
 // ! END LOGIC
@@ -109,7 +116,8 @@ const success = () => {
     console.log(keyChat);
     conv();
     console.log(strToChar);
-    result.innerHTML = strToChar;
+    merge();
+    result.innerHTML = mergeChat;
 };
 
 // click event encrypt
