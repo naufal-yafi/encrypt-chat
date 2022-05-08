@@ -9,7 +9,7 @@ consolAlert = 'input is not in accordance with the provisions',
 data = [
     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-    ' ','1','2','3','4','5','6','7','8','9','0'
+    '1','2','3','4','5','6','7','8','9','0'
 ];
 
 let strToChar = [],
@@ -54,13 +54,24 @@ const conv = () => {
         indic = keyChat[pK-1];
         strToChar[i] = data[indic];
     }
-}
+};
+
 // 5. merge
 const merge = () => {
     for (let i=0; i<strToChar.length; i++){
         mergeChat += strToChar[i];
     }
-}
+};
+
+// 6. clean history 
+const clean = () => {
+    mergeChat = "";
+    for (let i=0; i<strToChar.length; i++){
+        strToChar.pop();
+        keyChat.pop();
+    }
+}; 
+
 // ! END LOGIC
 
 // warning content
