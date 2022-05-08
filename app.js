@@ -26,6 +26,26 @@ function specialChar(dom){
     return cond;
 }
 
+function success(){
+    console.log('nice');
+}
+
+function check(dom){
+    if (specialChar(dom) == false){
+        alert.style.transform = 'translateY(0px)';
+        notif.innerHTML = "don't use special character";
+        warning(inputChat);
+        unwarning(inputPswd);
+        setTimeout(() =>{
+            alert.style.transform = 'translateY(-80px)';
+        },2500);
+    } else if (specialChar(dom)){
+        unwarning(inputChat);
+        success();
+    }
+}
+
+
 btnEnc.addEventListener('click',() => {
     let valueChat = inputChat.value;
     let valuePass = inputPswd.value;
@@ -55,7 +75,6 @@ btnEnc.addEventListener('click',() => {
             alert.style.transform = 'translateY(-80px)';
         },2500);
     } else {
-        unwarning(inputChat);
-        unwarning(inputPswd);
+        check(valueChat);
     }
 });
